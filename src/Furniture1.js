@@ -1,30 +1,32 @@
-import React from 'react'
-import { Canvas } from "@react-three/fiber";
+import React, { useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Suspense } from "react";
-import { OrbitControls } from '@react-three/drei';
+import { Center, OrbitControls, SoftShadows } from "@react-three/drei";
 
 const Model = () => {
-    const gltf = useLoader(GLTFLoader, "./furniture1.glb");
-    return (
-      <>
-        <primitive object={gltf.scene} scale={0.04} position={[0, -1, 1]}/>
-      </>
-    );
-  };
-  
+  const gltf = useLoader(GLTFLoader, "./furniture1.glb");
+  const ref = useRef();
+  useFrame(() => (ref.current.rotation.y += 0.01));
 
-function Furniture1() {
   return (
-    <Canvas>
-      <pointLight position={[0, 10, 10]} />
-        <Suspense fallback={null}>
-          <Model />
-          <OrbitControls />
-        </Suspense>
+    <>
+      <primitive object={gltf.scene} scale={0.3} ref={ref} />
+    </>
+  );
+};
+
+function Furniture2() {
+  return (
+    <Canvas camera={{ position: [30, 10, 20], fov: 65 }}>
+      <Center>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[20, 20, 10]} />
+        <pointLight position={[-20, -20, 10]} />
+        <Model />
+      </Center>
     </Canvas>
-  )
+  );
 }
 
-export default Furniture1
+export default Furniture2;
