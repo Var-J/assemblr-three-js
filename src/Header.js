@@ -15,7 +15,7 @@ function Header() {
   return (
     <header
       id="home"
-      className="absolute text-black w-full flex justify-between text-2xl p-2 lg:p-10 lg:px-40 left-0 z-30"
+      className="absolute text-black w-full flex justify-between text-2xl p-2 lg:p-5 z-30 mx-20 max-w-7xl border-b-2 border-yellow-400"
     >
       <h1 className="text-3xl">FurnitureBox™</h1>
       <motion.ul
@@ -29,19 +29,19 @@ function Header() {
         }`}
       >
         <li
-          className="hover:text-blue-100 transition-all duration-200"
+          className="hover:text-yellow-400 transition-all duration-200"
           onClick={handlerMenu}
         >
           <a href="#home">Home</a>
         </li>
         <li
-          className="hover:text-blue-100 transition-all duration-200"
+          className="hover:text-yellow-400 transition-all duration-200"
           onClick={handlerMenu}
         >
           <a href="#furniture">Furnitures</a>
         </li>
         <li
-          className="hover:text-blue-100 transition-all duration-200"
+          className="hover:text-yellow-400 transition-all duration-200"
           onClick={handlerMenu}
         >
           <a href="#contactUs">Contact Us</a>
@@ -50,17 +50,17 @@ function Header() {
       <div className="flex space-x-2 lg:hidden">
         <button onClick={handlerMenu} className="cursor-pointer space-y-1">
           <div
-            className={`w-8 h-1 bg-slate-900 dark:bg-slate-200 transition duration-200 ${
+            className={`w-8 h-1 bg-slate-900  transition duration-200 ${
               navBar ? "-rotate-45 translate-y-1" : ""
             }`}
           ></div>
           <div
-            className={`w-8 h-1 bg-slate-900  transition duration-200 dark:bg-slate-200 ${
+            className={`w-8 h-1 bg-slate-900 transition duration-200  ${
               navBar ? "hidden" : ""
             }`}
           ></div>
           <div
-            className={`w-8 h-1 bg-slate-900 dark:bg-slate-200 transition duration-200 ${
+            className={`w-8 h-1 bg-slate-900  transition duration-200 ${
               navBar ? "rotate-45 -translate-y-1" : ""
             }`}
           ></div>

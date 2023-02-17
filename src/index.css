@@ -6,6 +6,8 @@
     .forms {
         @apply rounded-lg outline-none focus:border-b-4 hover:border-b-4 border-green-400 transition-all p-2 text-xl
     }
+
+    
 }
 
 html {

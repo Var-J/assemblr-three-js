@@ -2,7 +2,6 @@ import React from 'react'
 import { Canvas } from "@react-three/fiber";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Suspense } from "react";
 import { Center, OrbitControls } from '@react-three/drei';
 
 const Model = () => {
