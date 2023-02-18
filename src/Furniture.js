@@ -12,7 +12,6 @@ function Furniture() {
   ];
 
   const [dummy, setDummy] = useState([...catalog]);
-  const [nav, setNav] = useState("");
 
   const handleNext = () => {
     var array = [...dummy];
