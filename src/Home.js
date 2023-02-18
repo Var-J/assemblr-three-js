@@ -49,7 +49,11 @@ function Home() {
         transition={{ delay: 1 }}
         className="w-3/4 h-auto top-28 right-0 absolute mx-auto z-10"
       >
-        <img src="https://wallpaperaccess.com/full/2076086.jpg" alt="" />
+        <img
+          src="https://wallpaperaccess.com/full/2076086.jpg"
+          alt=""
+          loading="lazy"
+        />
       </motion.div>
     </>
   );

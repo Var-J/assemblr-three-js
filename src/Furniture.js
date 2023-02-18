@@ -37,6 +37,7 @@ function Furniture() {
         <img
           src="https://t4.ftcdn.net/jpg/05/08/17/01/360_F_508170187_4Oonk4IG8u9eyfwSUvTASkT8hl71vRX2.jpg"
           alt=""
+          loading="lazy"
         />
       </motion.div>
 
