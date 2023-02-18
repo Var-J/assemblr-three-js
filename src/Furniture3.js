@@ -1,31 +1,69 @@
-import React from 'react'
-import { Canvas } from "@react-three/fiber";
-import { useLoader } from "@react-three/fiber";
+import React, { useEffect, useRef } from "react";
+import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Center, OrbitControls } from '@react-three/drei';
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-const Model = () => {
-    const gltf = useLoader(GLTFLoader, "./furniture3.glb");
-    return (
-      <>
-        <primitive object={gltf.scene} scale={1.1}/>
-      </>
-    );
-  };
-  
+function FurnitureTest() {
+  const mountRef = useRef(null);
 
-function Furniture3() {
-  return (
-    <Canvas camera={{ position: [30, 10, 25], fov: 65 }}>
-      <Center>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[20, 20, 10]} />
-        <pointLight position={[-20, -20, 10]} />
-        <OrbitControls />
-        <Model />
-      </Center>
-    </Canvas>
-  )
+  useEffect(() => {
+    var scene = new THREE.Scene();
+
+    // Camera
+    var camera = new THREE.PerspectiveCamera(25, 1, 1, 10000);
+    camera.position.set(50, 20, 50);
+
+    // Renderer
+    var renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setClearColor("black", 0); // Default 0x000000, 0
+    if (window.innerWidth > 1024) {
+      renderer.setSize(330, 330);
+    } else {
+      renderer.setSize(240, 330);
+    }
+    mountRef.current.appendChild(renderer.domElement);
+
+    // Light
+    const light = new THREE.AmbientLight(0x404040, 4); // soft white light
+    scene.add(light);
+
+    var directionalLight = new THREE.DirectionalLight("white", 0.7);
+    directionalLight.position.set(40, 20, 50);
+    scene.add(directionalLight);
+
+    // GLTF Loader
+    const loader = new GLTFLoader();
+    loader.load("/furniture3.glb", (gltf) => {
+      // called when the resource is loaded
+      var object = gltf.scene;
+      object.scale.set(1, 0.9, 1); // Scale the object
+      object.position.x = 0; //Position (x = right+ left-)
+      object.position.y = -15; //Position (y = up+, down-)
+      object.position.z = 0; //Position (z = front +, back-)
+      scene.add(object);
+    });
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableZoom = false
+    controls.enableDamping = true
+    
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // required if controls.enableDamping or controls.autoRotate are set to true
+      controls.update();
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    var test= mountRef.current
+    return () => test.removeChild(renderer.domElement);
+  }, []);
+
+  return <div ref={mountRef}></div>;
 }
 
-export default Furniture3
+export default FurnitureTest;

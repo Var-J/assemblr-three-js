@@ -19,14 +19,12 @@ function Furniture() {
     array.push(array[0]);
     array.shift();
     setDummy(array);
-    setNav("left");
   };
   const handlePrevious = () => {
     var array = [...dummy];
     array.unshift(array[2]);
     array.pop();
     setDummy(array);
-    setNav("right");
   };
 
   return (
