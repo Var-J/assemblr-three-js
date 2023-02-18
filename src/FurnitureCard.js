@@ -4,6 +4,7 @@ import Furniture2 from "./Furniture2";
 import Furniture3 from "./Furniture3";
 import Furniture4 from "./Furniture4";
 import { motion } from "framer-motion";
+import FurnitureTest from "./FurnitureTEst";
 
 function FurnitureCard({ furniture, i }) {
   return (
@@ -15,14 +16,14 @@ function FurnitureCard({ furniture, i }) {
       className={`h-60 w-60 lg:w-96 relative ${i} bg-white rounded-xl shadow-xl`}
     >
       <div
-        className="absolute bg-black/0 w-full -top-60 h-96"
+        className=" absolute bg-black/0 w-full -top-60 h-96"
       >
         {furniture.id === "1" ? (
           <Furniture1 />
         ) : furniture.id === "2" ? (
-          <Furniture2 />
-        ) : furniture.id === "3" ? (
           <Furniture3 />
+        ) : furniture.id === "3" ? (
+          <FurnitureTest />
         ) : (
           <Furniture4 />
         )}
