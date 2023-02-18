@@ -64,13 +64,13 @@ function Furniture() {
           {window.innerWidth < 1920 ? (
             <>
               {dummy.slice(0, 1).map((set, i) => (
-                <FurnitureCard key={i} furniture={set} nav={nav} />
+                <FurnitureCard key={i} furniture={set} />
               ))}
             </>
           ) : (
             <>
               {dummy.slice(0, 3).map((set, i) => (
-                <FurnitureCard key={i} furniture={set} nav={nav} />
+                <FurnitureCard key={i} furniture={set} />
               ))}
             </>
           )}
